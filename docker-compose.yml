@@ -1,0 +1,20 @@
+version: '2'
+services:
+  web:
+    hostname: web
+    restart: on-failure
+    environment:
+      - COLUMNS=150
+      #- SHELL=/bin/bash
+    container_name: jcp_web
+    ports:
+      - "9876:80"
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: nginx -g 'daemon off;'
+
+    volumes:
+      - ./:/usr/share/nginx/html
+volumes:
+  web:
